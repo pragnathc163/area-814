@@ -8,16 +8,25 @@ import { myApp } from '../firebase.config';
 import Logo from '../img/logo.png';
 import User from '../img/user.png';
 import { Link } from 'react-router-dom';
+import { useStateValue } from '../context/StateProvider';
+import { actionToTake } from '../context/reducer';
 
 const Header = () => {
 
   const firebaseAuth = getAuth(myApp);
   const provider = new GoogleAuthProvider();
 
+  const [{user}, dispatch] = useStateValue()
+
   const login = async () => {
-    const response = await signInWithPopup(firebaseAuth, provider)
-    console.log(response);
-  }
+    const {
+      user: { refreshToken, providerData },
+    } = await signInWithPopup(firebaseAuth, provider);
+    dispatch({
+      type: actionToTake.SET_USER,
+      user: providerData[0],
+    });
+  };
 
   return (
     <header className="fixed z-50 w-screen p-6 px-16">
@@ -39,23 +48,23 @@ const Header = () => {
           </ul>
 
           <div className='relative flex items-center justify-center'>
-            <MdShoppingCart 
-            className='text-textColor text-2xl cursor-pointer' 
+            <MdShoppingCart
+              className='text-textColor text-2xl cursor-pointer'
             />
             <div className='absolute top-3 -right-2 w-5 h-5 rounded-full bg-cartNumBg flex items-center justify-center'>
               <p className='text-xs text-white font-semibold'>2</p>
             </div>
           </div>
-          
+
           <div className='relative'>
-            <motion.img 
-            whileTap={{scale:0.6}} 
-            src={User} 
-            className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer' 
-            alt='user profile'
-            onClick={login}
+            <motion.img
+              whileTap={{ scale: 0.6 }}
+              src={User}
+              className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer'
+              alt='user profile'
+              onClick={login}
             />
-          </div> 
+          </div>
         </div>
 
       </div>
