@@ -56,11 +56,11 @@ const Header = () => {
 
         <div className='flex items-center gap-8'>
           <ul className='flex items-center gap-8'>
-            <li className='text-base text-textColor hover:text-headingColor duration-100
+            <li onClick={() => setIsMenu(false)} className='text-base text-textColor hover:text-headingColor duration-100
           transition-all ease-in-out cursor-pointer'>Home</li>
-            <li className='text-base text-textColor hover:text-headingColor duration-100
+            <li onClick={() => setIsMenu(false)} className='text-base text-textColor hover:text-headingColor duration-100
           transition-all ease-in-out cursor-pointer'>About Us</li>
-            <li className='text-base text-textColor hover:text-headingColor duration-100
+            <li onClick={() => setIsMenu(false)} className='text-base text-textColor hover:text-headingColor duration-100
           transition-all ease-in-out cursor-pointer'>For You</li>
           </ul>
 
@@ -88,7 +88,7 @@ const Header = () => {
                   {
                     user && user.email === 'prag2002@uw.edu' && (
                       <Link to={'/createItem'}>
-                        <p className='flex items-center cursor-pointer gap-3 hover:bg-slate-100 transition-all
+                        <p onClick={() => setIsMenu(false)} className='flex items-center cursor-pointer gap-3 hover:bg-slate-100 transition-all
                     duration-100 ease-in-out text-textColor text-base'><MdLibraryAdd />New Item</p>
                       </Link>
                     )
