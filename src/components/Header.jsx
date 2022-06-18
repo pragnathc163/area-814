@@ -35,6 +35,16 @@ const Header = () => {
     }
   };
 
+  const logout = () => {
+    setIsMenu(false)
+    localStorage.clear()
+
+    dispatch({
+      type: actionType.SET_USER,
+      user: null,
+    });
+  };
+
   return (
     <header className="fixed z-50 w-screen p-6 px-16">
       {/* Desktop Stuff */}
@@ -84,7 +94,7 @@ const Header = () => {
                     )
                   }
                   <p className='py-1.5 flex items-center cursor-pointer gap-3 hover:bg-slate-100 transition-all
-              duration-100 ease-in-out text-textColor text-base'><MdOutlineLogout />Logout</p>
+              duration-100 ease-in-out text-textColor text-base' onClick={logout}><MdOutlineLogout />Logout</p>
                 </motion.div>
               )
             }
@@ -96,10 +106,6 @@ const Header = () => {
 
       {/* Mobile stuff */}
       <div className="flex md:hidden w-full h-full">
-        <Link to={"/"} className='flex items-center gap-2'>
-          <img src={Logo} className="w-20 object-cover" alt='logo' />
-          <p className='text-headingColor text-x1 font-bold'>CycleFood</p>
-        </Link>
       </div>
     </header>
 
