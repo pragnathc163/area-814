@@ -33,7 +33,7 @@ const HomeContainer = () => {
                     <img className='rounded-3xl ml-auto h-650' src={Hero} alt='Hero Backgound' />
 
                     <div className='w-full h-full absolute flex top-0 left-0 px-32 py-4 items-center justify-center'>
-                        {staticData & staticData.map(n => (
+                        {staticData && staticData.map(n => (
                             <div key={n.id} className='w-190 flex flex-col items-center justify-center backdrop-blur-md bg-cardInfo p-4 rounded-3xl'>
                                 <img src={n.imgSrc} alt='Main Restraunt #1' className='w-40 -mt-20' />
                                 <p className='text-xl mt-4 font-semibold text-textColor'>{n.name}</p>
@@ -41,7 +41,7 @@ const HomeContainer = () => {
                                 <p className='text-md text-gray-500 font-semibold my-2'>{n.decp}</p>
                                 <p className='text-sm font-semibold text-headingColor'>{n.offer}</p>
                             </div>
-                        ))}
+                        ))}                        
                     </div>
 
                 </div>
