@@ -2,6 +2,9 @@ import React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion';
 import { MdEmojiFoodBeverage } from 'react-icons/md'
+import { AiOutlineUpload, AiFillDelete } from "react-icons/ai";
+import { filterCategories } from '../utils/appData';
+import Load from './Load';
 
 const CreateContainer = () => {
 
@@ -23,11 +26,13 @@ const CreateContainer = () => {
   // Item Image State
   const [itemImage, setItemImage] = useState(null);
 
+  const uploadPic = () => {}
 
+  const deletePic = () => {}
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center'>
-      <div className='w-[75%] border border-gray-300 rounded-lg p-4 flex flex-col items-center justify-center'>
+      <div className='w-[75%] border border-gray-300 gap-4 rounded-lg p-4 flex flex-col items-center justify-center'>
         {
           error && (
             <motion.p initial={{ opacity: 0 }} exit={{ opacity: 0 }} animate={{ opacity: 1 }}
@@ -39,11 +44,48 @@ const CreateContainer = () => {
         <div className='w-full gap-2 border-b border-gray-400 py-2 flex items-center'>
           <MdEmojiFoodBeverage className='text-xl text-gray-700' />
           <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none font-semibold' required value={title} placeholder='Name of Food Item'
-          onChange={(e) => setTitle(e.target.value)} />
+            onChange={(e) => setTitle(e.target.value)} />
         </div>
+
+        <div className='w-full'>
+          <select className='outline-none w-full text-base cursor-pointer border-b-2 border-gray-300 p-2 rounded-md' onChange={(e) => setFilterCat(e.target.value)}>
+            <option value='other' className='bg-white'>Select Food Category</option>
+            {filterCategories && filterCategories.map(n => (
+              <option key={n.id} className='text-base border-0 outline-none capitalize bg-white text-headingColor'
+                value={n.urlParamName}>
+                {n.name}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        <div className='group flex flex-col items-center justify-center border-2 border-dotted border-gray-300
+        h-420 w-full cursor-pointer rounded-lg'>
+          {loadTime ? <Load /> : <>
+            {!itemImage ? <>
+              <label className='w-full h-full flex flex-col items-center justify-center cursor-pointer'>
+                <div className='w-full h-full gap-2 flex flex-col items-center justify-center'>
+                  <AiOutlineUpload className='text-gray-500 text-3xl hover:text-gray-900' />
+                  <p className='text-gray-500 hover:text-gray-900'>Upload Product Image</p>
+                </div>
+                <input type='file' name='uploadImage' accept='image/*' className='w-0 h-0' onChange={uploadPic} />
+              </label>
+            </> : <>
+              <div className='relative h-full'>
+                <img className='w-full h-full object-cover' src={itemImage} alt='uploadImage'></img>
+                <button type='button' onClick={deletePic} className='absolute bottom-4 right-3 p-3 bg-red-500 text-xl cursor-pointer
+                outline-none hover:shadow-md transition-all ease-in-out duration-500 rounded-full'>
+                  <AiFillDelete className='text-white' />
+                </button>
+
+              </div>
+            </>}
+          </>}
+        </div>
+
       </div>
     </div>
-  )
-}
+  );
+};
 
 export default CreateContainer
