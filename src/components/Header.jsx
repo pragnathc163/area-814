@@ -1,6 +1,6 @@
 import React from 'react';
 import { MdShoppingCart } from 'react-icons/md';
-
+import { motion } from 'framer-motion';
 import Logo from '../img/logo.png';
 import User from '../img/user.png';
 
@@ -31,8 +31,12 @@ const Header = () => {
             </div>
           </div>
 
-          <img src={User} className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl' alt='user profile' />
-
+          <motion.img 
+          whileTap={{scale:0.6}} 
+          src={User} 
+          className='w-10 min-w-[40px] h-10 min-h-[40px] drop-shadow-xl cursor-pointer' 
+          alt='user profile' 
+          />
         </div>
 
       </div>
