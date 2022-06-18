@@ -29,4 +29,4 @@ export const staticData = [
         offer: 'Next order free',
         imgSrc: Hunger
     },
-]
+];
