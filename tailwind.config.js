@@ -50,6 +50,7 @@ module.exports = {
         headingColor: "#2e2e2e",
         textColor: "#515151",
         primary: "#f5f3f3",
+        cardInfo: 'rgba(256,256,256,0.4)',
         cartNumBg: "#e80013",
       }
     },
