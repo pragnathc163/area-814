@@ -9,7 +9,7 @@ import Logo from '../img/logo.png';
 import User from '../img/user.png';
 import { Link } from 'react-router-dom';
 import { useStateValue } from '../context/StateProvider';
-import { actionToTake } from '../context/reducer';
+import { actionType } from '../context/reducer';
 
 const Header = () => {
 
@@ -23,7 +23,7 @@ const Header = () => {
       user: { refreshToken, providerData },
     } = await signInWithPopup(firebaseAuth, provider);
     dispatch({
-      type: actionToTake.SET_USER,
+      type: actionType.SET_USER,
       user: providerData[0],
     });
   };
