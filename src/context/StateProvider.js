@@ -6,6 +6,6 @@ export const Provider = ({ reducer, initialState, child }) => (
     <Context.Provider value={useReducer(reducer, initialState)}>
         {child}
     </Context.Provider>
-)
+);
 
 export const useStateValue = () => useContext(Context);
