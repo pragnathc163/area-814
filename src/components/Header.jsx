@@ -19,7 +19,7 @@ const Header = () => {
   const [{ user }, dispatch] = useStateValue()
 
   const [isMenu, setIsMenu] = useState(false)
-  
+
   const login = async () => {
     if (!user) {
       const {
@@ -74,7 +74,7 @@ const Header = () => {
 
             {
               isMenu && (
-                <motion.div initial={{opacity: 0, scale: 0.6}} exit={{opacity: 0, scale: 0.6}} animate={{opacity: 1, scale: 1}} className='w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0 px-4 py-2'>
+                <motion.div initial={{ opacity: 0, scale: 0.6 }} exit={{ opacity: 0, scale: 0.6 }} animate={{ opacity: 1, scale: 1 }} className='w-40 bg-gray-50 shadow-xl rounded-lg flex flex-col absolute top-12 right-0 px-4 py-2'>
                   {
                     user && user.email === 'prag2002@uw.edu' && (
                       <Link to={'/createItem'}>
@@ -95,7 +95,12 @@ const Header = () => {
       </div>
 
       {/* Mobile stuff */}
-      <div className="flex md:hidden w-full h-full"></div>
+      <div className="flex md:hidden w-full h-full">
+        <Link to={"/"} className='flex items-center gap-2'>
+          <img src={Logo} className="w-20 object-cover" alt='logo' />
+          <p className='text-headingColor text-x1 font-bold'>CycleFood</p>
+        </Link>
+      </div>
     </header>
 
   )
