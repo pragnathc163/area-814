@@ -19,8 +19,9 @@ const HomeContainer = () => {
                 </p>
 
                 <p className='text-base text-textColor text-left w-[80%]'>
-                    FILL IN THIS TEXT LATER!!
-                    Thrilled you are here to learn more about me! I'm Pragnath, a passionate developer and an informatics student at the University of Washington with a focus on software development. I enjoy problem-solving to develop simple and innovative solutions for complex problems that create impact.
+                US restaurants generate an estimated 22 to 33 billion pounds of food waste each year. Institutions — including schools, hotels and hospitals — generate an additional 7 to 11 billion pounds per year.
+                Our goal is simple: to reduce this waste when possible and meet the growing food needs of society. All the food sold here meets strict quality standards so rest assured and enjoy
+                high-quality food at low rates! 
                 </p>
 
                 <button type='button' className='bg-gradient-to-br from-green-300 to-green-500 w-auto px-4 py-2
