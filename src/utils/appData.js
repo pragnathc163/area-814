@@ -1,4 +1,8 @@
 import Hunger from '../img/hunger.png';
+import Spaghetti from '../img/spaghetti.png';
+import ChickenShaw from '../img/chickenShaw.png';
+import Panini from '../img/panini.png';
+import Ramen from '../img/ramen.png';
 
 export const staticData = [
     {
@@ -6,28 +10,28 @@ export const staticData = [
         name: "Running Spaghetti",
         decp: "BM's Brewhouse",
         offer: 'Save 10%+',
-        imgSrc: Hunger
+        imgSrc: Spaghetti
     },
     {
         id: 2,
         name: 'Chicken Shawarma',
         decp: "Genie's Gyro",
         offer: 'Get first order free',
-        imgSrc: Hunger
+        imgSrc: ChickenShaw
     },
     {
         id: 3,
         name: 'Mozzarella Panini',
         decp: 'Moonbucks',
         offer: '50% off first order',
-        imgSrc: Hunger
+        imgSrc: Panini
     },
     {
         id: 4,
         name: 'Miso Ramen',
         decp: 'NinjaNoodles',
         offer: 'Next order free',
-        imgSrc: Hunger
+        imgSrc: Ramen
     },
 ];
 

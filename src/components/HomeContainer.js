@@ -32,7 +32,7 @@ const HomeContainer = () => {
                 <div className='py-2 flex-1 flex items-center relative'>
                     <img className='rounded-3xl ml-auto h-650' src={Hero} alt='Hero Backgound' />
 
-                    <div className='w-full h-full absolute flex top-0 left-10 gap-4 flex-wrap px-32 py-4 items-center justify-center'>
+                    <div className='w-full h-full absolute flex top-0 right-10 gap-4 flex-wrap px-32 py-4 items-center justify-center'>
                         {staticData && staticData.map(n => (
                             <div key={n.id} className='w-190 min-w-[190px] flex flex-col drop-shadow-lg items-center justify-center backdrop-blur-md bg-cardInfo p-4 rounded-3xl'>
                                 <img src={n.imgSrc} alt='Main Restraunt #1' className='w-40 -mt-20' />
