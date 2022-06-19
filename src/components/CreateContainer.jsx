@@ -128,7 +128,7 @@ const CreateContainer = () => {
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center'>
-      <div className='w-[75%] border border-gray-300 gap-4 rounded-lg p-4 flex flex-col items-center justify-center'>
+      <div className='w-[75%] border -mt-10 border-gray-300 gap-4 rounded-lg p-4 flex flex-col items-center justify-center'>
         {
           error && (
             <motion.p initial={{ opacity: 0 }} exit={{ opacity: 0 }} animate={{ opacity: 1 }}
