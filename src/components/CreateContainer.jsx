@@ -106,7 +106,7 @@ const CreateContainer = () => {
         }, 4000);
       } else {
         const impData = {
-          id: `${Date.now()}`, title: title, price: price,
+          id: `${Date.now()}`, title: title, price: price, calories: calories,
           quantity: 1, Category: filterCat, imgSrc: itemImage, Restaurant: restaurant
         }
         saveData(impData);
