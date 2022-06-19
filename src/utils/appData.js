@@ -38,37 +38,37 @@ export const staticData = [
 export const filterCategories = [
     {
         id: 1,
-        name: 'Soup',
-        urlParamName: 'soup',
+        name: 'Indian',
+        urlParamName: 'indian',
     },
     {
         id: 2,
-        name: 'Salad',
-        urlParamName: 'salad',
+        name: 'Fast Food',
+        urlParamName: 'fastFood',
     },
     {
         id: 3,
+        name: 'Mexican',
+        urlParamName: 'mexican',
+    },
+    {
+        id: 4,
+        name: 'Greek',
+        urlParamName: 'greek',
+    },
+    {
+        id: 5,
         name: 'Chinese',
         urlParamName: 'chinese',
     },
     {
-        id: 4,
-        name: 'Rice',
-        urlParamName: 'rice',
-    },
-    {
-        id: 5,
-        name: 'Pizza',
-        urlParamName: 'pizza',
-    },
-    {
         id: 6,
-        name: 'Sandwich',
-        urlParamName: 'sandwich',
+        name: 'Middle Eastern',
+        urlParamName: 'middleEastern',
     },
     {
         id: 7,
-        name: 'Ramen',
-        urlParamName: 'ramen',
+        name: 'Deserts',
+        urlParamName: 'Deserts',
     },
 ];
