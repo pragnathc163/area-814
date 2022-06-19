@@ -185,7 +185,7 @@ const MainContainer = () => {
         <RowContainer buttonScroll={buttonScroll} flag={true} supplyData={products?.filter(n => n.Category === 'middleEastern')} />
       </section>
 
-      <CartContainer />
+      {/* <CartContainer /> */}
 
     </div>
   )
