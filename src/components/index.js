@@ -5,3 +5,4 @@ export { default as HomeContainer } from "./HomeContainer";
 export { default as Load } from "./Load";
 export { default as CartContainer } from './CartContainer';
 export { default as RowContainer } from './RowContainer';
+export { default as CartItems } from './CartItems';

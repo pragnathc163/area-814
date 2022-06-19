@@ -3,9 +3,29 @@ import { MdShoppingCart } from 'react-icons/md';
 import { motion } from 'framer-motion';
 import { useEffect } from 'react';
 import { useRef } from 'react';
+import { useStateValue } from '../context/StateProvider';
+import { actionType } from '../context/reducer';
+import { useState } from 'react';
 
 const RowContainer = ({ flag, supplyData, buttonScroll }) => {
   const foodRowRef = useRef()
+
+  const [items, setItems] = useState([])
+  
+  const [{ cartItems }, dispatch] = useStateValue();
+
+  const addItemToCart = () => {
+    dispatch({
+      type: actionType.SET_CARTITEMS,
+      cartItems: items,
+    });
+    localStorage.setItem("cartItems", JSON.stringify(items))
+  };
+
+  useEffect(() => {
+    addItemToCart()
+  }, [items])
+
   useEffect(() => {
     foodRowRef.current.scrollLeft += buttonScroll
   }, [buttonScroll])
@@ -22,7 +42,7 @@ const RowContainer = ({ flag, supplyData, buttonScroll }) => {
               className="w-40 drop-shadow-2xl -mt-8"
             />
           </div>
-          <motion.div whileTap={{ scale: 0.75 }} className='w-8 h-8 bg-emerald-700 flex items-center hover:shadow-md justify-center cursor-pointer rounded-full'>
+          <motion.div onClick={() => setItems([...cartItems, n])} whileTap={{ scale: 0.75 }} className='w-8 h-8 bg-emerald-700 flex items-center hover:shadow-md justify-center cursor-pointer rounded-full'>
             <MdShoppingCart className='text-white' />
           </motion.div>
 
