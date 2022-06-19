@@ -20,7 +20,8 @@ const CartContainer = () => {
         });
     };
 
-    const [tot, setTot] = useState([])
+    const [tot, setTot] = useState(0)
+    const [flag, setFlag] = useState(1);
 
     useEffect(() => {
         let totalPrice = cartItems.reduce(function (accumulator, n) {
@@ -29,6 +30,15 @@ const CartContainer = () => {
         setTot(totalPrice);
         console.log(tot);
     }, [tot, flag]);
+
+    const clearCart = () => {
+        dispatch({
+          type: actionType.SET_CARTITEMS,
+          cartItems: [],
+        });
+    
+        localStorage.setItem("cartItems", JSON.stringify([]));
+      };
 
 
     return (
@@ -52,7 +62,7 @@ const CartContainer = () => {
                 <div className='w-full h-340 h-42 px-6 py-10 flex flex-col gap-3 overflow-y-scroll scrollbar-none'>
                     {/* Cart Objects */}
                     {cartItems && cartItems.map(n => (
-                        <CartItems key={n.id} n={n} />
+                        <CartItems key={n.id} n={n} setFlag={setFlag} flag={flag} />
                     ))}
                 </div>
 
