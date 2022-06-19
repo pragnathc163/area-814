@@ -11,7 +11,9 @@ import { FaHotel } from 'react-icons/fa'
 
 import { filterCategories } from '../utils/appData';
 import Load from './Load';
-import { saveData } from '../utils/firebaseSaveData';
+import { getProductInfo, saveData } from '../utils/firebaseSaveData';
+import { useStateValue } from '../context/StateProvider';
+import { actionType } from '../context/reducer';
 
 const CreateContainer = () => {
 
@@ -29,6 +31,9 @@ const CreateContainer = () => {
 
   // Load Time State
   const [loadTime, setLoadTime] = useState(false);
+
+  // State for getting data from Firebase
+  const [{products}, dispatch] = useStateValue();
 
   // Item Image State
   const [itemImage, setItemImage] = useState(null);
@@ -105,7 +110,6 @@ const CreateContainer = () => {
           quantity: 1, Category: filterCat, imgSrc: itemImage, Restaurant: restaurant
         }
         saveData(impData);
-        setLoadTime(false);
         setError(true);
         setErrorMsg('Product uploaded successfully!');
         cleanData(); 
@@ -124,7 +128,18 @@ const CreateContainer = () => {
         setLoadTime(false)
       }, 4000);
     }
+
+    getData();
   }
+
+  const getData = async () => {
+    await getProductInfo().then(n => {
+      dispatch({
+        type: actionType.SET_PRODUCTS,
+        products: n
+      })
+    });
+  };
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center'>
