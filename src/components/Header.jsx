@@ -61,7 +61,7 @@ const Header = () => {
             <li onClick={() => setIsMenu(false)} className='text-base text-textColor hover:text-headingColor duration-100
           transition-all ease-in-out cursor-pointer'>About Us</li>
             <li onClick={() => setIsMenu(false)} className='text-base text-textColor hover:text-headingColor duration-100
-          transition-all ease-in-out cursor-pointer'>For You</li>
+          transition-all ease-in-out cursor-pointer'>Menu</li>
           </ul>
 
           <div className='relative flex items-center justify-center'>
