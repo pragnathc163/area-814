@@ -52,6 +52,7 @@ module.exports = {
         primary: "#f5f3f3",
         cardInfo: 'rgba(256,256,256,0.4)',
         cartNumBg: "#e80013",
+        // foodBg: 'rgba(116,255,0,0.05)',
       }
     },
   },
