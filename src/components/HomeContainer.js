@@ -24,7 +24,7 @@ const HomeContainer = () => {
                 </p>
 
                 <button type='button' className='bg-gradient-to-br from-green-300 to-green-500 w-auto px-4 py-2
-        rounded-lg hover:shadow-lg transition-all ease-in-out duration-100 '>Order Now!</button>
+                rounded-lg hover:shadow-lg transition-all ease-in-out duration-100 '>Order Now!</button>
 
             </div>
             <div className='py-2 flex-1'>
@@ -41,7 +41,7 @@ const HomeContainer = () => {
                                 <p className='text-md text-gray-500 font-semibold my-2'>{n.decp}</p>
                                 <p className='text-sm font-semibold text-headingColor'>{n.offer}</p>
                             </div>
-                        ))}                        
+                        ))}
                     </div>
 
                 </div>

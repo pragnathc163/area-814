@@ -1,17 +1,24 @@
 import React from 'react'
 import { useState } from 'react'
 import { motion } from 'framer-motion';
-import { MdEmojiFoodBeverage } from 'react-icons/md'
+import { deleteObject, getDownloadURL, ref, uploadBytesResumable } from 'firebase/storage';
+import { storage } from '../firebase.config';
+
+import { MdEmojiFoodBeverage, MdPriceCheck } from 'react-icons/md'
 import { AiOutlineUpload, AiFillDelete } from "react-icons/ai";
+import { GiFoodChain } from 'react-icons/gi'
+import { FaHotel } from 'react-icons/fa'
+
 import { filterCategories } from '../utils/appData';
 import Load from './Load';
+import { saveData } from '../utils/firebaseSaveData';
 
 const CreateContainer = () => {
 
   // Category States
   const [title, setTitle] = useState("");
   const [price, setPrice] = useState("");
-  const [restaurant, setRestaurants] = useState("");
+  const [restaurant, setRestaurant] = useState("");
   const [filterCat, setFilterCat] = useState(null);
   const [calories, setCalories] = useState("");
 
@@ -21,14 +28,103 @@ const CreateContainer = () => {
   const [errorMsg, setErrorMsg] = useState(null);
 
   // Load Time State
-  const [loadTime, setloadTime] = useState(false);
+  const [loadTime, setLoadTime] = useState(false);
 
   // Item Image State
   const [itemImage, setItemImage] = useState(null);
 
-  const uploadPic = () => {}
+  const uploadPic = (e) => {
+    setLoadTime(true);
+    const imgObj = e.target.files[0];
+    const storeImgRef = ref(storage, `Images/${Date.now()}-${imgObj.name}`)
+    const uploadFire = uploadBytesResumable(storeImgRef, imgObj);
 
-  const deletePic = () => {}
+    uploadFire.on('state_changed', (snapshot) => {
+      const uploadProcess = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    }, (alert) => {
+      console.log(alert);
+      setError(true);
+      setErrorMsg('Unable to upload Image: Please try again later!');
+      setAlert('Error');
+      setTimeout(() => {
+        setError(false);
+        setLoadTime(false)
+      }, 4000);
+    }, () => {
+      getDownloadURL(uploadFire.snapshot.ref).then(downloadURL => {
+        setItemImage(downloadURL);
+        setLoadTime(false);
+        setError(true);
+        setErrorMsg('Image uploaded successfully!');
+        setAlert('Success');
+        setTimeout(() => {
+          setError(false);
+        }, 4000);
+      })
+    });
+  };
+
+  const cleanData = () => {
+    setTitle('');
+    setCalories('');
+    setPrice('')
+    setItemImage(null);
+    setRestaurant('');
+    setFilterCat('Choose a Category:')
+  }
+
+  const deletePic = () => {
+    setLoadTime(true);
+    const deleteImgRef = ref(storage, itemImage);
+    deleteObject(deleteImgRef).then(() => {
+      setItemImage(null);
+      setLoadTime(false);
+      setError(true);
+      setErrorMsg('Image removed successfully!');
+      setAlert('Success');
+      setTimeout(() => {
+        setError(false);
+      }, 4000);
+    });
+  };
+
+  const uploadProduct = () => {
+    setLoadTime(true);
+    try {
+      if ((!title || !calories || !itemImage || !price || !filterCat)) {
+        setError(true);
+        setErrorMsg('Please ensure all required fields are entered!');
+        setAlert('Error');
+        setTimeout(() => {
+          setError(false);
+          setLoadTime(false)
+        }, 4000);
+      } else {
+        const impData = {
+          id: `${Date.now()}`, title: title, price: price,
+          quantity: 1, Category: filterCat, imgSrc: itemImage, Restaurant: restaurant
+        }
+        saveData(impData);
+        setLoadTime(false);
+        setError(true);
+        setErrorMsg('Product uploaded successfully!');
+        cleanData(); 
+        setAlert('Success');
+        setTimeout(() => {
+          setError(false);
+        }, 4000);
+      }
+    } catch (alert) {
+      console.log(alert);
+      setError(true);
+      setErrorMsg('Unable to upload Image: Please try again later!');
+      setAlert('Error');
+      setTimeout(() => {
+        setError(false);
+        setLoadTime(false)
+      }, 4000);
+    }
+  }
 
   return (
     <div className='w-full min-h-screen flex items-center justify-center'>
@@ -43,7 +139,7 @@ const CreateContainer = () => {
 
         <div className='w-full gap-2 border-b border-gray-400 py-2 flex items-center'>
           <MdEmojiFoodBeverage className='text-xl text-gray-700' />
-          <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none font-semibold' required value={title} placeholder='Name of Food Item'
+          <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none' required value={title} placeholder='Name of Food Item'
             onChange={(e) => setTitle(e.target.value)} />
         </div>
 
@@ -77,10 +173,36 @@ const CreateContainer = () => {
                 outline-none hover:shadow-md transition-all ease-in-out duration-500 rounded-full'>
                   <AiFillDelete className='text-white' />
                 </button>
-
               </div>
             </>}
           </>}
+        </div>
+
+        <div className='w-dull flex flex-row gap-3 items-center'>
+          <div className='w-full py-2 gap-2 flex items-center border-b border-gray-400'>
+            <GiFoodChain className='text-gray-800 text-2xl' />
+            <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none'
+              required placeholder='Calories' value={calories} onChange={(e) => setCalories(e.target.value)} />
+          </div>
+
+          <div className='w-full py-2 gap-2 flex items-center border-b border-gray-400'>
+            <MdPriceCheck className='text-gray-800 text-2xl' />
+            <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none'
+              required placeholder='Price' value={price} onChange={(e) => setPrice(e.target.value)} />
+          </div>
+
+          <div className='w-full py-2 gap-2 flex items-center border-b border-gray-400'>
+            <FaHotel className='text-gray-800 text-2xl' />
+            <input type='text' className='w-full h-full text-textColor text-lg bg-transparent outline-none border-none'
+              required placeholder='Restaurant Name' value={restaurant} onChange={(e) => setRestaurant(e.target.value)} />
+          </div>
+
+        </div>
+
+        <div className='flex items-center w-full'>
+          <button type='button' onClick={uploadProduct} className='ml-auto w-auto bg-emerald-600 px-12 py-2 rounded-lg text-lg text-white font-semibold border-none outline-none'>
+            Add Product
+          </button>
         </div>
 
       </div>
