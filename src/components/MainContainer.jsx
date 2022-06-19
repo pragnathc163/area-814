@@ -11,11 +11,11 @@ import CartContainer from './CartContainer';
 
 const MainContainer = () => {
 
-  const [{products}, dispatch] = useStateValue();
+  const [{products, showCart}, dispatch] = useStateValue();
 
   const [buttonScroll, setButtonScroll] = useState(0)
 
-  useEffect(() => {}, [buttonScroll])
+  useEffect(() => {}, [buttonScroll, showCart])
 
   return (
     <div className='w-full h0auto flex flex-col items-center justify-center overflow-x-hidden'>
@@ -185,7 +185,9 @@ const MainContainer = () => {
         <RowContainer buttonScroll={buttonScroll} flag={true} supplyData={products?.filter(n => n.Category === 'middleEastern')} />
       </section>
 
-      {/* <CartContainer /> */}
+      {showCart && (
+        <CartContainer />
+      )}
 
     </div>
   )

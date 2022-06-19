@@ -5,4 +5,5 @@ const userData = fetchUser()
 export const initialState = {
     user: userData,
     products: null,
+    showCart: false,
 };

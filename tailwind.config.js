@@ -53,6 +53,9 @@ module.exports = {
         cardInfo: 'rgba(256,256,256,0.4)',
         cartNumBg: "#e80013",
         cardBg: 'rgba(256,256,256,0.8)',
+        bgCart: '#282a2c',
+        itemCart: '#2e3033',
+        totalCart: '#343739',
       }
     },
   },

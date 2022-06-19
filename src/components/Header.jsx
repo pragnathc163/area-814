@@ -16,7 +16,7 @@ const Header = () => {
   const firebaseAuth = getAuth(myApp);
   const provider = new GoogleAuthProvider();
 
-  const [{ user }, dispatch] = useStateValue()
+  const [{ user, showCart }, dispatch] = useStateValue()
 
   const [isMenu, setIsMenu] = useState(false)
 
@@ -34,6 +34,13 @@ const Header = () => {
       setIsMenu(!isMenu);
     }
   };
+
+  const cartShow = () => {
+    dispatch({
+      type: actionType.SET_SHOW_CART,
+      showCart: !showCart, 
+    });
+  }
 
   const logout = () => {
     setIsMenu(false)
@@ -62,7 +69,7 @@ const Header = () => {
           transition-all ease-in-out cursor-pointer'>About Us</li>
           </ul>
 
-          <div className='relative flex items-center justify-center'>
+          <div onClick={cartShow} className='relative flex items-center justify-center'>
             <MdShoppingCart
               className='text-textColor text-2xl cursor-pointer'
             />
