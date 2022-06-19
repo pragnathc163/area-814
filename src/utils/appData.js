@@ -3,29 +3,29 @@ import Hunger from '../img/hunger.png';
 export const staticData = [
     {
         id: 1,
-        name: 'foodChain1',
-        decp: 'Some Restraunt #1',
+        name: "Running Spaghetti",
+        decp: "BM's Brewhouse",
         offer: 'Save 10%+',
         imgSrc: Hunger
     },
     {
         id: 2,
-        name: 'foodChain2',
-        decp: 'Some Restraunt #2',
+        name: 'Chicken Shawarma',
+        decp: "Genie's Gyro",
         offer: 'Get first order free',
         imgSrc: Hunger
     },
     {
         id: 3,
-        name: 'foodChain3',
-        decp: 'Some Restraunt #3',
-        offer: 'Free Bevrage',
+        name: 'Mozzarella Panini',
+        decp: 'Moonbucks',
+        offer: '50% off first order',
         imgSrc: Hunger
     },
     {
         id: 4,
-        name: 'foodChain4',
-        decp: 'Some Restraunt #4',
+        name: 'Miso Ramen',
+        decp: 'NinjaNoodles',
         offer: 'Next order free',
         imgSrc: Hunger
     },
