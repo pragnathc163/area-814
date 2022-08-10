@@ -42,6 +42,8 @@ const Header = () => {
     });
   }
 
+  // Fix the Profile icon
+
   const logout = () => {
     setIsMenu(false)
     localStorage.clear()
